@@ -1,0 +1,174 @@
+{% load static %}
+{% load umbali_tags %}
+
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{{ event.title|default:"La puissance du son" }}">
+    <link rel="icon" href="{% static 'img/fav_icon.ico' %}">
+
+    <title>Umbali | {{ event.title|default:"La puissance du son" }}</title>
+
+    <!-- Primary Meta Tags -->
+<title>Umbali | {{ event.title|default:"La puissance du son" }}</title>
+<meta name="title" content="Umbali | La puissance du son">
+<meta name="description" content="La puissance du son">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://www.umbali.live">
+<meta property="og:title" content="Umbali | {{ last_event.title|default:"La puissance du son" }}">
+<meta property="og:description" content="{{ last_event.title|default:"La puissance du son" }}">
+<meta property="og:image" content="{{ last_event.cover|default:"/static/img/logo.jpg" }}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://www.umbali.live">
+<meta property="twitter:title" content="Umbali | {{ last_event.title|default:"La puissance du son" }}">
+<meta property="twitter:description" content="{{ last_event.title|default:"La puissance du son" }}">
+<meta property="twitter:image" content="{{ last_event.cover|default:"/static/img/logo.jpg" }}">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/cover.css' %}" rel="stylesheet">
+
+    <style>
+      .coverWallpaper{
+          background-image: url({{ last_event.cover.url }});
+          background-position: center;
+          background-size: cover;
+      }
+      .btn{
+        border-radius: 0px;
+      }
+      .nav-masthead .active {
+          color: #660B8A;
+          border-bottom-color: #660B8A;
+      }
+    </style>
+{% block top_js %}{% endblock top_js %}
+  </head>
+
+
+  <body class="text-center coverWallpaper">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand"><a href="{% url 'Web:index' %}" style="text-decoration: none;"><img alt="Umbali" src="{% static 'img/logo.jpg' %}" class="img-fluid" /></a></h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link {% if request.path == "/" %}active{% endif %}" href="{% url 'Web:index' %}">Home</a>
+            {% if request.user.is_authenticated %}
+            &nbsp&nbsp&nbsp
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Hey! {{ request.user.get_full_name }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-radius: 0px;width: 100%;">
+                <a class="dropdown-item" href="{% url 'Web:logout' %}">Deconnexion</a>
+              </div>
+            </li>
+            &nbsp&nbsp&nbsp
+            {% else %}
+            <a class="nav-link {% if request.path == "/login/" %}active{% endif %}" href="{% url 'Web:login' %}">S'identifier</a>
+            <a class="nav-link {% if request.path == "/register/" %}active{% endif %}" href="{% url 'Web:register' %}">S'enregistrer</a>
+            {% endif %}
+            <a class="nav-link {% if request.path == "/contact/" %}active{% endif %}" href="{% url 'Web:contact' %}">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      {% block body %}
+      <main role="main" class="inner cover">
+
+        {% if request.GET.sign_up %}
+        <div class="alert alert-success">
+          Inscription réussie
+        </div>
+        {% endif %}
+
+        <h1 class="cover-heading">{{ last_event.title|default:"Umbali" }}</h1>
+        <p class="lead" style="margin-bottom: 0px;">{{ last_event.short_description|default:"La puissance du son" }}</p>
+        <p class="lead">{% if last_event != None %}Événement dans <b class="text-danger"> {{ now|timesince:last_event.start_time }}</b> {% else %}Prochain événement bientot{% endif %} </p>
+
+        {% if last_event == None %}
+        <form>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control form-control-lg" placeholder="Laissez-nous votre adresse e-mail, nous vous informerons...">
+          </div>
+        </form>
+        {% endif %}
+
+
+        {% if last_event != None %}
+          {% if not request.user.is_authenticated %}
+          <p class="lead">
+            <a href="{% url 'Web:checkout' last_event.slug %}" class="btn btn-lg btn-outline-success">Acheter à {{ last_event.price }}</a>
+          </p>
+          {% else %}
+            {% if last_event|is_owned:request.user %}
+            <p class="lead">
+              <a href="{% url 'Web:live' last_event.slug %}" class="btn btn-lg btn-outline-danger">Direct</a>
+            </p>
+            {% else %}
+            <p class="lead">
+              <a href="{% url 'Web:checkout' last_event.slug %}" class="btn btn-lg btn-outline-success">Acheter à {{ last_event.price }}</a>
+            </p>
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      </main>
+      {% endblock body %}
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="text-center">
+              <a href="#"><img src="{% static 'img/playstore_icon.png' %}" class="img-fluid" width="128" alt="Play Store UMBALI"></a>
+            </div>
+            <div class="text-center">
+              <a href="#"><img src="{% static 'img/facebook.svg' %}" class="img-fluid" width="32" alt="facebook"></a>
+              <a href="#"><img src="{% static 'img/twitter.svg' %}" class="img-fluid" width="32" alt="twitter"></a>
+              <a href="#"><img src="{% static 'img/youtube.svg' %}" class="img-fluid" width="32" alt="youtube"></a>
+            </div>
+          </div>
+          <p style="font-size: 0.90rem;"> {% for page in pages %}
+          <a href="{% url 'Web:page' page.slug %}">{{ page.title }}</a>
+            {% if not forloop.last %}
+            -
+            {% endif %}
+          {% endfor %} | Copyright Umbali ©{% now "Y" %}</p>
+        </div>
+      </footer>
+    </div>
+
+    {% block outer_body %}{% endblock outer_body %}
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery-3.js' %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127074482-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-127074482-1');
+    </script>
+    {% block bottom_js %}{% endblock bottom_js %}
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "Web/base.html" %}
+
+{% load static %}
+
+{% block body %}
+<main role="main" class="inner cover">
+  <div class="text-center" style="margin-top: 10%;">
+    <h1 class="cover-heading">{{ event.title }}</h1>
+    <p class="lead">Total : {{ event.price }}</p>
+    <!-- writes out the form tag automatically -->
+    {{ form.render }}
+    <br>
+      <br>
+    <img src="{% static 'img/paypal.jpg' %}" alt="secure-payment-paypal" width="256">
+    <br>
+  </div>
+  <script type="text/javascript">
+    $("form[action='https://www.sandbox.paypal.com/cgi-bin/webscr']").submit();
+  </script>
+</main>
+{% endblock body %}

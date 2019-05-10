@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="210mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 330 210" width="330mm" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">
+   <![CDATA[
+    .str2 {stroke:black;stroke-width:0.2}
+    .str0 {stroke:black;stroke-width:5}
+    .str3 {stroke:black;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    .str1 {stroke:#282829;stroke-width:5}
+    .str4 {stroke:#282829;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+    .fil3 {fill:none}
+    .fil1 {fill:black}
+    .fil4 {fill:#211F1F}
+    .fil0 {fill:#E6E6E6}
+    .fil2 {fill:white}
+   ]]>
+  </style></defs><g id="Layer_x0020_1"><ellipse class="fil0 str0" cx="216.038" cy="38.2811" rx="28.8141" ry="28.537"/><ellipse class="fil1" cx="212.849" cy="41.9233" rx="24.1313" ry="23.8993"/><ellipse class="fil0 str0" cx="104.195" cy="38.2811" rx="28.8141" ry="28.537"/><ellipse class="fil1" cx="107.385" cy="41.9233" rx="24.1313" ry="23.8993"/><ellipse class="fil2 str1" cx="160.419" cy="109.552" rx="91.3186" ry="90.4404"/><ellipse class="fil0" cx="165.485" cy="114.529" rx="81.659" ry="80.8738"/><rect class="fil1 str2" height="15.5851" rx="21.378" ry="21.378" width="18.2494" x="151.165" y="115.041"/><ellipse class="fil3 str1" cx="124.133" cy="104.869" rx="25.8379" ry="26.2758"/><ellipse class="fil3 str1" cx="199.646" cy="104.869" rx="25.8379" ry="26.2758"/><ellipse class="fil4" cx="124.133" cy="104.869" rx="21.1611" ry="21.5198"/><ellipse class="fil4" cx="199.646" cy="105.118" rx="21.1611" ry="21.5198"/><path class="fil3 str3" d="M145.527 135.969c9.8258,-2.7652 14.4494,-6.8106 13.8734,-12.1353 0.5337,6.2148 5.7509,10.2233 15.6513,12.0256"/><path class="fil3 str4" d="M111.017 107.503c9.328,-6.9142 18.0721,-7.0239 26.2323,-0.3293"/><path class="fil3 str4" d="M186.53 107.752c9.328,-6.9142 18.0721,-7.024 26.2323,-0.3293"/><rect class="fil0" height="3.45187" rx="4.7349" ry="4.7349" width="4.04197" x="161.285" y="117.444"/></g></svg>

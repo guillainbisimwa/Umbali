@@ -1,0 +1,7 @@
+{% extends "Web/base.html" %}
+
+{% block body %}
+<h1 class="cover-heading text-warning">Paiement échouer</h1>
+<p class="lead">Pour payer à nouveau, veuillez cliquer sur le bouton ci-dessous</p>
+<a href="{% url 'Web:checkout' event_slug %}" class="btn btn-lg btn-success" style="border-radius: 0px;">Réessayer</a>
+{% endblock body %}

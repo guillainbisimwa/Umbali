@@ -1,0 +1,57 @@
+{% extends "Web/base.html" %}
+{% load static %}
+{% block top_js %}
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-database.js"></script>
+{% endblock top_js %}
+{% block body %}
+<style media="screen">
+  .cover-container {
+    max-width: 100%;
+  }
+  #av-player{
+    width: 100%;
+    height: 100%;
+  }
+  #videoLayout{
+    background-color: black;
+  }
+  #commentLayout{
+    background-color: black;
+  }
+</style>
+<div class="row" style="height: 100%;">
+  <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="videoLayout">
+    {% if myEvent %}
+    <object id="av-player" type="application/avplayer"></object>
+    {% else %}
+    <h3 class="text-center">Veuillez vous déconnecter de l'ancien appareil pour regarder ici, contactez-nous si le problème persiste.</h3>
+    {% endif %}
+  </div>
+  {% csrf_token %}
+  <input type="hidden" name="slug" value="{{ event.slug }}">
+  <input type="hidden" name="f_n" value="{{ request.user.get_full_name }}">
+  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="commentLayout" style="height: 100%;">
+    <h4 style="margin-bottom: 0px;width:100%;margin-top:10px;">{{ event.title }}</h4>
+    <hr style="margin-top: 5px;margin-bottom:5px;">
+    {% if myEvent %}
+    <input class="form-control" style="border-radius: 5px;height: 30px;" placeholder="Veuillez laisser une question ou un commentaire...." id="comment_btn">
+    <hr>
+    <div id="parent_comment_box" style="overflow-y: scroll;height: 78%;">
+      <div id="comment_box" class="text-left">
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock body %}
+{% block footer %}{% endblock footer %}
+{% block bottom_js %}
+<script type="text/javascript">var body = document.getElementsByTagName('body'),body[0].classList.remove("text-center");</script>
+
+{% if myEvent %}
+<script type="text/javascript" src="{% static 'js/5143543143531464.js' %}"></script>
+<script src="{% static 'js/tizen_5465d46545f3d453f4d5.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/8791546541321.js' %}"></script>
+{% endif %}
+{% endblock bottom_js %}

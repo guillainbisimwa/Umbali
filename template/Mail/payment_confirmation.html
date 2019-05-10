@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hey {{ user.get_full_name }},
+
+Nous avons bien reçu votre paiement pour {{ myEvent_title }} event,
+Voici votre numéro de ticket : #{{ myEvent_id }}.
+
+N'hésitez pas à nous contacter par email à hello@umbali.live si vous rencontrez un problème. Nous serons heureux de vous aider.
+
+http://{{ domain }}
+
+L'équipe Umbali
+{% endautoescape %}

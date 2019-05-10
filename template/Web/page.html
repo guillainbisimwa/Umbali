@@ -1,0 +1,15 @@
+{% extends "Web/base.html" %}
+
+{% block body %}
+<style media="screen">
+  html, body{
+    height: 0px;
+  }
+</style>
+{{ page.content|safe }}
+<script type="text/javascript">
+  var body = document.getElementsByTagName('body');
+  body[0].classList.remove("text-center");
+  body[0].classList.add("text-justify");
+</script>
+{% endblock body %}

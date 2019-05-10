@@ -1,0 +1,23 @@
+{% extends "Web/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <style>
+      body{
+        height: 150% !important;
+      }
+    </style>
+    <form method="post" style="margin-top: 50px;margin-bottom: 75px;">
+      <h2 class="text-left">S'enregistrer</h2>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="form-group">
+        <input class="form-check-input" type="checkbox" required>
+        <label class="form-check-label" for="defaultCheck1">
+          J'accepte <a href="#" class="text-info">les conditions d'utilisation</a>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-success btn-lg">Soumettre</button>
+    </form>
+{% endblock body %}
